@@ -1,4 +1,4 @@
-const slides = [
+let slides = [
 	{
 		"image":"slide1.jpg",
 		"tagLine":"Impressions tous formats <span>en boutique et en ligne</span>"
@@ -17,12 +17,36 @@ const slides = [
 	}
 ]
 
+
+// Variables //
+
 let arrowImgLeft = document.querySelector(".arrow_left");
+let arrowImgRight = document.querySelector(".arrow_right");
+let dotSelected = document.querySelector(".dot_selected")
+let dots = document.querySelector(".dots")
+
+
+// Interaction avec les flèches //
+
 arrowImgLeft.addEventListener("click",() => {
-	console.log("c'est ok à gauche")
+	alert("c'est ok à gauche")
 })
 
-let arrowImgRight = document.querySelector(".arrow_right")
+
 arrowImgRight.addEventListener("click", () => {
-	console.log("c'est ok à droite")
+	alert("c'est ok à droite")
 }) 
+
+// Ajout des bullet points //
+
+// Création dans le HTML des dots //
+let dot = document.createElement("span")
+
+
+// PLacement de dot dans la div dots //
+dots.appendChild(dot)
+
+
+// Application du style CSS des dots //
+dot.classList.add("dot")
+
