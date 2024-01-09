@@ -20,7 +20,6 @@ let slides = [
 // Variables //
 
 // DOTS //
-let dotSelected = document.querySelector(".dot_selected");
 let dots = document.querySelector(".dots");
 let dot = document.querySelector(".dot");
 
@@ -35,21 +34,26 @@ let indexSlides = 0
 
 
 function clickLeft () {
-	indexSlides = (indexSlides -1 + slides.length) % slides.length
+	indexSlides--
+	if (indexSlides < 0){
+		indexSlides = 3
+	}
 	updateImg()
 }
 
 function clickRight () {
-	indexSlides = (indexSlides +1 + slides.length) % slides.length
+	indexSlides++
+	if (indexSlides >= slides.length){
+		indexSlides = 0
+	}
 	updateImg()
 }
 
 function updateImg () {
-	bannerImg.src = slides [indexSlides].image
+	bannerImg.src = slides[indexSlides].image
 	bannerText.innerHTML = slides[indexSlides].tagLine
 	updateDots ()
 }
-
 
 
 arrowImgLeft.addEventListener ("click", clickLeft)
@@ -69,13 +73,15 @@ updateDots ()
 
 }
 
-function updateDots() { 
-	let dotsAll = document.querySelectorAll(".dot")
 
-	dotsAll.forEach((dot, i) => {
-	  dot.classList.remove("dot_selected"); // Supprime la classe dot_selected de tous les dots
-	  if (i === indexSlides) {
-		dot.classList.add("dot_selected"); // Ajoute la classe dot_selected au dot correspondant à l'image actuelle
-	  }
-	});
-  }
+function updateDots() {
+    let dotsAll = document.querySelectorAll(".dot");
+
+    for (let i = 0; i < dotsAll.length; i++) {
+        if (i === indexSlides) {
+            dotsAll[i].classList.add("dot_selected"); // Ajoute la classe dot_selected au bullet correspondant à l'image en cours
+        } else {
+            dotsAll[i].classList.remove("dot_selected"); // Supprime la classe dot_selected des autres bullets
+        }
+    }
+}
