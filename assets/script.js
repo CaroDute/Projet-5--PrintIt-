@@ -24,19 +24,16 @@ let dots = document.querySelector(".dots");
 let dot = document.querySelector(".dot");
 
 // IMG //
-
 let arrowImgLeft = document.querySelector(".arrow_left")
 let arrowImgRight = document.querySelector(".arrow_right")
 let bannerImg = document.querySelector(".banner-img")
 let bannerText = document.querySelector("#banner p")
-
 let indexSlides = 0
-
 
 function clickLeft () {
 	indexSlides--
 	if (indexSlides < 0){
-		indexSlides = 3
+		indexSlides = slides.length - 1
 	}
 	updateImg()
 }
@@ -55,7 +52,6 @@ function updateImg () {
 	updateDots ()
 }
 
-
 arrowImgLeft.addEventListener ("click", clickLeft)
 arrowImgRight.addEventListener ("click", clickRight)
 
@@ -64,18 +60,14 @@ arrowImgRight.addEventListener ("click", clickRight)
 for (i = 0; i < slides.length; i++){
 
 dot = document.createElement("span") // Création dans le HTML des dots //
-
 dots.appendChild(dot) // PLacement de dot dans la div dots //
-
 dot.classList.add("dot")// Application du style CSS des dots //
 
 updateDots ()
-
 }
 
-
 function updateDots() {
-    let dotsAll = document.querySelectorAll(".dot");
+    let dotsAll = document.querySelectorAll(".dot"); // je récupère toutes les dots que j'ai créée juste au dessus
 
     for (let i = 0; i < dotsAll.length; i++) {
         if (i === indexSlides) {
